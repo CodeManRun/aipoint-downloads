@@ -1,0 +1,437 @@
+{
+  "version": 1,
+  "format": 1,
+  "default_provider": "gpt",
+  "providers": [
+    {
+      "id": "gpt",
+      "display_name": "OpenAI GPT",
+      "lanes": {
+        "subscription": { "plan_page": "https://chatgpt.com/pricing" },
+        "api_key": {
+          "top_up_page": "https://platform.openai.com/settings/organization/billing",
+          "key_page": "https://platform.openai.com/api-keys"
+        }
+      },
+      "wire": {
+        "base_addresses": {
+          "subscription": "https://chatgpt.com/backend-api/codex",
+          "api_key": "https://api.openai.com/v1"
+        },
+        "openai_responses": {
+          "client_identity": { "client_version": "0.160.0", "originator": "codex_cli_rs" }
+        }
+      },
+      "default_model": "gpt-6.1-sol",
+      "models": [
+        {
+          "id": "gpt-6-astra",
+          "display_name": "GPT-6 Astra",
+          "page": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+          "context_window": 272000,
+          "max_context_window": 872000,
+          "reasoning": {
+            "wire_parameter": "reasoning.effort",
+            "default": "medium",
+            "levels": [
+              { "display": "Low", "wire": "low" },
+              { "display": "Medium", "wire": "medium" },
+              { "display": "High", "wire": "high" },
+              { "display": "Extra High", "wire": "xhigh" },
+              { "display": "Max", "wire": "max" }
+            ]
+          },
+          "request": {
+            "openai_responses": {
+              "shape": "lite",
+              "verbosity": { "default": "low" },
+              "reasoning_summary": { "default": "none" },
+              "service_tiers": [
+                { "id": "priority", "name": "Fast", "description": "2x speed, increased usage" }
+              ],
+              "input_modalities": ["text", "image"],
+              "image_detail_original": true
+            }
+          }
+        },
+        {
+          "id": "gpt-6.1-sol",
+          "display_name": "GPT-6.1 Sol",
+          "page": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
+          "context_window": 272000,
+          "max_context_window": 872000,
+          "reasoning": {
+            "wire_parameter": "reasoning.effort",
+            "default": "medium",
+            "levels": [
+              { "display": "Low", "wire": "low" },
+              { "display": "Medium", "wire": "medium" },
+              { "display": "High", "wire": "high" },
+              { "display": "Extra High", "wire": "xhigh" },
+              { "display": "Max", "wire": "max" }
+            ]
+          },
+          "request": {
+            "openai_responses": {
+              "shape": "lite",
+              "verbosity": { "default": "low" },
+              "reasoning_summary": { "default": "none" },
+              "service_tiers": [
+                { "id": "priority", "name": "Fast", "description": "2x speed, increased usage" }
+              ],
+              "input_modalities": ["text", "image"],
+              "image_detail_original": true
+            }
+          }
+        },
+        {
+          "id": "gpt-6-luna",
+          "display_name": "GPT-6 Luna",
+          "page": "https://developers.openai.com/api/docs/models/gpt-6-luna",
+          "context_window": 272000,
+          "max_context_window": 872000,
+          "reasoning": {
+            "wire_parameter": "reasoning.effort",
+            "default": "medium",
+            "levels": [
+              { "display": "Low", "wire": "low" },
+              { "display": "Medium", "wire": "medium" },
+              { "display": "High", "wire": "high" },
+              { "display": "Extra High", "wire": "xhigh" },
+              { "display": "Max", "wire": "max" }
+            ]
+          },
+          "request": {
+            "openai_responses": {
+              "shape": "lite",
+              "verbosity": { "default": "low" },
+              "reasoning_summary": { "default": "none" },
+              "service_tiers": [
+                { "id": "priority", "name": "Fast", "description": "1.5x speed" }
+              ],
+              "input_modalities": ["text", "image"],
+              "image_detail_original": true
+            }
+          }
+        },
+        {
+          "id": "gpt-5.5",
+          "display_name": "GPT-5.5",
+          "page": "https://developers.openai.com/api/docs/models/gpt-5.5",
+          "context_window": 272000,
+          "max_context_window": 272000,
+          "reasoning": {
+            "wire_parameter": "reasoning.effort",
+            "default": "medium",
+            "levels": [
+              { "display": "Low", "wire": "low" },
+              { "display": "Medium", "wire": "medium" },
+              { "display": "High", "wire": "high" },
+              { "display": "Extra High", "wire": "xhigh" }
+            ]
+          },
+          "request": {
+            "openai_responses": {
+              "shape": "classic",
+              "verbosity": { "default": "low" },
+              "reasoning_summary": { "default": "none" },
+              "service_tiers": [
+                { "id": "priority", "name": "Fast", "description": "1.5x speed, increased usage" }
+              ],
+              "input_modalities": ["text", "image"],
+              "image_detail_original": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "claude",
+      "display_name": "Anthropic Claude",
+      "lanes": {
+        "api_key": {
+          "top_up_page": "https://platform.claude.com/settings/billing",
+          "key_page": "https://platform.claude.com/settings/keys"
+        }
+      },
+      "wire": {
+        "base_addresses": {
+          "api_key": "https://api.anthropic.com/v1"
+        }
+      },
+      "default_model": "claude-sonnet-5-5",
+      "models": [
+        {
+          "id": "claude-opus-5-5",
+          "display_name": "Claude Opus 5.5",
+          "page": "https://platform.claude.com/docs/en/models/opus-5-5/overview",
+          "context_window": 1000000,
+          "reasoning": {
+            "wire_parameter": "output_config.effort",
+            "default": "medium",
+            "levels": [
+              { "display": "Low", "wire": "low" },
+              { "display": "Medium", "wire": "medium" },
+              { "display": "High", "wire": "high" },
+              { "display": "Extra high", "wire": "xhigh" },
+              { "display": "Max", "wire": "max" }
+            ]
+          }
+        },
+        {
+          "id": "claude-fable-5-1",
+          "display_name": "Claude Fable 5.1",
+          "page": "https://platform.claude.com/docs/en/models/fable-5-1/overview",
+          "context_window": 1000000,
+          "reasoning": {
+            "wire_parameter": "output_config.effort",
+            "default": "high",
+            "levels": [
+              { "display": "Low", "wire": "low" },
+              { "display": "Medium", "wire": "medium" },
+              { "display": "High", "wire": "high" },
+              { "display": "Extra high", "wire": "xhigh" },
+              { "display": "Max", "wire": "max" }
+            ]
+          }
+        },
+        {
+          "id": "claude-sonnet-5-5",
+          "display_name": "Claude Sonnet 5.5",
+          "page": "https://platform.claude.com/docs/en/models/sonnet-5-5/overview",
+          "context_window": 1000000,
+          "reasoning": {
+            "wire_parameter": "output_config.effort",
+            "default": "medium",
+            "levels": [
+              { "display": "Low", "wire": "low" },
+              { "display": "Medium", "wire": "medium" },
+              { "display": "High", "wire": "high" },
+              { "display": "Extra high", "wire": "xhigh" },
+              { "display": "Max", "wire": "max" }
+            ]
+          }
+        },
+        {
+          "id": "claude-haiku-4-5-20251001",
+          "display_name": "Claude Haiku 4.5",
+          "page": "https://platform.claude.com/docs/en/models/haiku-4-5/overview",
+          "context_window": 200000
+        },
+        {
+          "id": "claude-sonnet-5",
+          "display_name": "Claude Sonnet 5",
+          "page": "https://platform.claude.com/docs/en/models/sonnet-5/overview",
+          "context_window": 1000000,
+          "reasoning": {
+            "wire_parameter": "output_config.effort",
+            "default": "high",
+            "levels": [
+              { "display": "Low", "wire": "low" },
+              { "display": "Medium", "wire": "medium" },
+              { "display": "High", "wire": "high" },
+              { "display": "Extra high", "wire": "xhigh" },
+              { "display": "Max", "wire": "max" }
+            ]
+          }
+        },
+        {
+          "id": "claude-opus-5",
+          "display_name": "Claude Opus 5",
+          "page": "https://platform.claude.com/docs/en/models/opus-5/overview",
+          "context_window": 1000000,
+          "reasoning": {
+            "wire_parameter": "output_config.effort",
+            "default": "high",
+            "levels": [
+              { "display": "Low", "wire": "low" },
+              { "display": "Medium", "wire": "medium" },
+              { "display": "High", "wire": "high" },
+              { "display": "Extra high", "wire": "xhigh" },
+              { "display": "Max", "wire": "max" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gemini",
+      "display_name": "Google Gemini",
+      "lanes": {
+        "api_key": {
+          "top_up_page": "https://aistudio.google.com/billing",
+          "key_page": "https://aistudio.google.com/apikey"
+        }
+      },
+      "wire": {
+        "base_addresses": {
+          "api_key": "https://generativelanguage.googleapis.com/v1beta"
+        }
+      },
+      "default_model": "gemini-3.8-flash",
+      "models": [
+        {
+          "id": "gemini-3.1-pro-preview",
+          "display_name": "Gemini 3.1 Pro",
+          "page": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview",
+          "context_window": 1048576,
+          "reasoning": {
+            "wire_parameter": "generationConfig.thinkingConfig.thinkingLevel",
+            "default": "high",
+            "levels": [
+              { "display": "Low", "wire": "low" },
+              { "display": "Medium", "wire": "medium" },
+              { "display": "High", "wire": "high" }
+            ]
+          }
+        },
+        {
+          "id": "gemini-3.8-flash",
+          "display_name": "Gemini 3.8 Flash",
+          "page": "https://ai.google.dev/gemini-api/docs/models/gemini-3.8-flash",
+          "context_window": 1048576,
+          "reasoning": {
+            "wire_parameter": "generationConfig.thinkingConfig.thinkingLevel",
+            "default": "medium",
+            "levels": [
+              { "display": "Low", "wire": "low" },
+              { "display": "Medium", "wire": "medium" },
+              { "display": "High", "wire": "high" }
+            ]
+          }
+        },
+        {
+          "id": "gemini-3.5-flash-lite",
+          "display_name": "Gemini 3.5 Flash-Lite",
+          "page": "https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash-lite",
+          "context_window": 1048576,
+          "reasoning": {
+            "wire_parameter": "generationConfig.thinkingConfig.thinkingLevel",
+            "default": "minimal",
+            "levels": [
+              { "display": "Minimal", "wire": "minimal" },
+              { "display": "Low", "wire": "low" },
+              { "display": "Medium", "wire": "medium" },
+              { "display": "High", "wire": "high" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "grok",
+      "display_name": "xAI Grok",
+      "lanes": {
+        "api_key": {
+          "top_up_page": "https://console.x.ai/team/default/billing",
+          "key_page": "https://console.x.ai/team/default/api-keys"
+        }
+      },
+      "wire": {
+        "base_addresses": {
+          "api_key": "https://api.x.ai/v1"
+        }
+      },
+      "default_model": "grok-4.3",
+      "models": [
+        {
+          "id": "grok-4.7",
+          "display_name": "Grok 4.7",
+          "page": "https://docs.x.ai/developers/models/grok-4.7",
+          "context_window": 500000,
+          "reasoning": {
+            "wire_parameter": "reasoning.effort",
+            "default": "high",
+            "levels": [
+              { "display": "Low", "wire": "low" },
+              { "display": "Medium", "wire": "medium" },
+              { "display": "High", "wire": "high" },
+              { "display": "Extra high", "wire": "xhigh" }
+            ]
+          }
+        },
+        {
+          "id": "grok-4.6",
+          "display_name": "Grok 4.6",
+          "page": "https://docs.x.ai/developers/models/grok-4.6",
+          "context_window": 500000,
+          "reasoning": {
+            "wire_parameter": "reasoning.effort",
+            "default": "high",
+            "levels": [
+              { "display": "Low", "wire": "low" },
+              { "display": "Medium", "wire": "medium" },
+              { "display": "High", "wire": "high" },
+              { "display": "Extra high", "wire": "xhigh" }
+            ]
+          }
+        },
+        {
+          "id": "grok-4.5",
+          "display_name": "Grok 4.5",
+          "page": "https://docs.x.ai/developers/models/grok-4.5",
+          "context_window": 500000,
+          "reasoning": {
+            "wire_parameter": "reasoning.effort",
+            "default": "high",
+            "levels": [
+              { "display": "Low", "wire": "low" },
+              { "display": "Medium", "wire": "medium" },
+              { "display": "High", "wire": "high" }
+            ]
+          }
+        },
+        {
+          "id": "grok-4.3",
+          "display_name": "Grok 4.3",
+          "page": "https://docs.x.ai/developers/models/grok-4.3",
+          "context_window": 1000000,
+          "reasoning": {
+            "wire_parameter": "reasoning.effort",
+            "default": "medium",
+            "levels": [
+              { "display": "None", "wire": "none" },
+              { "display": "Low", "wire": "low" },
+              { "display": "Medium", "wire": "medium" },
+              { "display": "High", "wire": "high" },
+              { "display": "Extra high", "wire": "xhigh" }
+            ]
+          }
+        },
+        {
+          "id": "grok-4.20-0309-reasoning",
+          "display_name": "Grok 4.20",
+          "page": "https://docs.x.ai/developers/models/grok-4.20-0309-reasoning",
+          "context_window": 1000000
+        }
+      ]
+    },
+    {
+      "id": "openrouter",
+      "display_name": "OpenRouter",
+      "lanes": {
+        "api_key": {
+          "top_up_page": "https://openrouter.ai/settings/credits",
+          "key_page": "https://openrouter.ai/settings/keys"
+        }
+      },
+      "wire": {
+        "base_addresses": {
+          "api_key": "https://openrouter.ai/api/v1"
+        }
+      },
+      "rails": "gpt",
+      "live_models": {
+        "list_address": "https://openrouter.ai/api/v1/models?supported_parameters=tools&output_modalities=text&sort=top-weekly",
+        "min_context_window": 128000
+      }
+    },
+    {
+      "id": "local_model",
+      "display_name": "Local model",
+      "lanes": {
+        "address": {}
+      }
+    }
+  ]
+}
